@@ -1,0 +1,58 @@
+{% load static %}
+{% static "images" as baseUrl %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Homepage</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+          }
+          
+          .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          }
+          
+          .container {
+            padding: 2px 16px;
+          }
+        </style>
+        <script>
+          document.getElementById("j").innerHTML=Date();
+        </script>
+</head>
+<body style="background-image: url({{baseUrl}}/weather.jpg);">
+    <h1 style="text-align: center;">Weather</h1>
+    <hr>
+    <div>
+      <p id="j"></p>
+    {% for weather in weathers %}
+
+    
+    <h2 style="text-align: center;">{{weather.city}}</h2>
+    <div class="card" style="margin:auto;">
+      <img src="https://api.openweathermap.org/img/w/{{weather.icon}}.png" alt="Avatar" style="width:25%;height:25%;">
+      <div class="container">
+        <h4><b>{{weather.temperature}} &deg; C</b></h4>  
+        <h4> {{weather.description}}</h4>
+
+        
+      </div>
+    
+    </div>
+
+
+    
+    {% endfor %}
+    </div>
+    <br>
+    <footer style="bottom: 0px;"><h3 style="text-align: right;">Mahade Hasan &copy; 2020</h3></footer>
+</body>
+</html>
